@@ -1,19 +1,20 @@
 <script>
     import Board from './index.svelte';
+    import {getRandomPerson, getRandomPersonList} from "../helpers/helpers";
 
-    const url = 'https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-2_ipcjws.jpg';
-
-    let friends = [
-        {name: 'Bertie Yates', details: '29 years'},
-        {name: 'Hester Hogan', details: '29 years'},
-        {name: 'Larry Little', details: '29 years'},
-        {name: 'Sean Walsh', details: '29 years'},
-        {name: 'Lola Gardner', details: '29 years'},
-    ].map(item => ({...item, imgUrl: url}));
+    let friends = getRandomPersonList(10);
 
     const clearFiendsList = () => friends = [];
+    const addFriend = () => friends = friends.concat(getRandomPerson());
+    const removeFriend = () => friends = friends.slice(0, -1);
+
 </script>
 
 <main>
-    <Board {friends} {clearFiendsList} />
+    <Board
+            {friends}
+            {clearFiendsList}
+            {addFriend}
+            {removeFriend}
+    />
 </main>

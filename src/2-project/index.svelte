@@ -8,11 +8,13 @@
         <div class="underline"></div>
     </div>
     <div>
-        <article class="single-tour">
-            <img src="" alt="">
-            <footer>
+        {#each places as place}
+            <article class="single-tour">
+                <img src="" alt="">
+                <footer>
 
-            </footer>
-        </article>
+                </footer>
+            </article>
+        {/each}
     </div>
 </section>

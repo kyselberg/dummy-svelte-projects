@@ -1,22 +1,20 @@
 <script>
-    import PersonItem from './person-item.svelte';
+    import Board from './board.svelte';
+    import {getRandomPerson, getRandomPersonList} from "../helpers/helpers";
 
-    export let friends = [];
-    export let clearFiendsList = () => {};
-    export let removeFriend = () => {};
-    export let addFriend = () => {};
+    let friends = getRandomPersonList(10);
+
+    const clearFiendsList = () => friends = [];
+    const addFriend = () => friends = friends.concat(getRandomPerson());
+    const removeFriend = () => friends = friends.slice(0, -1);
+
 </script>
 
-<section class="container">
-    <h3>{friends.length} birthdays today</h3>
-
-    {#each friends as friend}
-        <PersonItem {friend} />
-    {/each}
-
-    <div class="btns">
-        <button on:click={addFriend}>+</button>
-        <button on:click={removeFriend}>-</button>
-    </div>
-    <button on:click={clearFiendsList}>clear all</button>
-</section>
+<main>
+    <Board
+            {friends}
+            {clearFiendsList}
+            {addFriend}
+            {removeFriend}
+    />
+</main>

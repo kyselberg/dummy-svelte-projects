@@ -1,6 +1,7 @@
 <script>
     import {onMount, setContext} from 'svelte';
     import Tours from './tour-list.svelte';
+    import Loading from './loading.svelte';
     import {DELETE_TOUR_CONTEXT_KEY, fetchTours} from './helpers';
 
     let isLoading = false;
@@ -22,10 +23,14 @@
 
 <main>
     <section>
-        <div class="title">
-            <h2>our tours</h2>
-            <div class="underline"></div>
-        </div>
-        <Tours {tours} />
+        {#if isLoading}
+            <Loading />
+        {:else}
+            <div class="title">
+                <h2>our tours</h2>
+                <div class="underline"></div>
+            </div>
+            <Tours {tours} />
+        {/if}
     </section>
 </main>
